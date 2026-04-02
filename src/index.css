@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 36 33% 94%;
+    --foreground: 22 30% 22%;
+
+    --card: 38 50% 97%;
+    --card-foreground: 22 30% 22%;
+
+    --popover: 38 50% 97%;
+    --popover-foreground: 22 30% 22%;
+
+    --primary: 28 55% 50%;
+    --primary-foreground: 38 50% 97%;
+
+    --secondary: 15 52% 47%;
+    --secondary-foreground: 38 50% 97%;
+
+    --muted: 33 28% 85%;
+    --muted-foreground: 20 10% 44%;
+
+    --accent: 106 21% 46%;
+    --accent-foreground: 38 50% 97%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 33 28% 85%;
+    --input: 33 28% 85%;
+    --ring: 28 55% 50%;
+
+    --radius: 0.5rem;
+
+    /* Caribou Nature custom tokens */
+    --ocre: 28 55% 50%;
+    --terracotta: 15 52% 47%;
+    --creme: 36 33% 94%;
+    --blanc-casse: 38 50% 97%;
+    --vert-sauge: 106 21% 46%;
+    --brun-boise: 22 30% 22%;
+    --sable: 33 28% 85%;
+    --gris-chaud: 20 10% 44%;
+
+    --shadow-soft: 0 2px 12px rgba(74,55,40,0.08);
+    --shadow-card: 0 4px 20px rgba(74,55,40,0.06);
+
+    --sidebar-background: 36 33% 94%;
+    --sidebar-foreground: 22 30% 22%;
+    --sidebar-primary: 28 55% 50%;
+    --sidebar-primary-foreground: 38 50% 97%;
+    --sidebar-accent: 33 28% 85%;
+    --sidebar-accent-foreground: 22 30% 22%;
+    --sidebar-border: 33 28% 85%;
+    --sidebar-ring: 28 55% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    @apply text-brun;
+  }
+
+  h1 { @apply text-4xl md:text-5xl font-semibold; }
+  h2 { @apply text-3xl md:text-4xl font-semibold; }
+  h3 { @apply text-xl md:text-2xl font-semibold; }
+  h4 { @apply text-lg md:text-xl font-semibold; }
+}
+
+/* Kraft paper texture effect */
+.bg-kraft {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Wave separator */
+.wave-separator {
+  position: relative;
+}
+.wave-separator::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 30'%3E%3Cpath fill='%23E8DCC8' d='M0,15 C360,30 720,0 1080,15 C1260,22 1380,20 1440,15 L1440,30 L0,30 Z'/%3E%3C/svg%3E") no-repeat;
+  background-size: cover;
+}

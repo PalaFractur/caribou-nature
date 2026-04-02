@@ -1,0 +1,260 @@
+{
+  "boutique": {
+    "nom": "Caribou Nature",
+    "gerant": "Denis Bertrand",
+    "adresse": "12 rue Saint-Amable, 63200 Riom",
+    "telephone": "04 73 64 80 55",
+    "email": "caribounature@gmail.com",
+    "fondee_en": 2003,
+    "note_google": 4.7,
+    "nombre_avis": 29,
+    "nombre_references": 1000,
+    "horaires": {
+      "lundi": "Fermé",
+      "mardi": "9h30–12h / 14h–19h",
+      "mercredi": "9h30–12h / 14h–19h",
+      "jeudi": "9h30–12h / 14h–19h",
+      "vendredi": "9h30–12h / 14h–19h",
+      "samedi": "9h30–12h30 / 14h30–19h",
+      "dimanche": "Fermé"
+    },
+    "services": ["Click & Collect", "Livraison locale gratuite dès 20€", "Emballage cadeau offert", "Commande par téléphone et email"],
+    "reseaux_sociaux": {
+      "facebook": "https://www.facebook.com/Caribounature/",
+      "instagram": "https://www.instagram.com/caribou.nature/"
+    }
+  },
+  "categories": [
+    "Jouets en bois & éveil",
+    "Jeux de société & éducatifs",
+    "Loisirs créatifs & puzzles",
+    "Marionnettes & figurines",
+    "Naissance & bébé",
+    "Plein-air & musique",
+    "Poupées & peluches",
+    "Jeux d'imitation & construction",
+    "Déguisements & accessoires"
+  ],
+  "produits": [
+    {
+      "id": 1,
+      "nom": "Tracteur et remorque en bois",
+      "slug": "tracteur-remorque-bois",
+      "prix": 32,
+      "age_min": 2,
+      "age_max": 5,
+      "categorie": "Jouets en bois & éveil",
+      "nouveaute": true,
+      "image": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 2,
+      "nom": "Œuf pour œuf (jouet d'éveil)",
+      "slug": "oeuf-pour-oeuf",
+      "prix": 18,
+      "age_min": 0,
+      "age_max": 2,
+      "categorie": "Naissance & bébé",
+      "nouveaute": false,
+      "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 3,
+      "nom": "Microscope nomade",
+      "slug": "microscope-nomade",
+      "prix": 45,
+      "age_min": 7,
+      "age_max": 12,
+      "categorie": "Jeux de société & éducatifs",
+      "nouveaute": true,
+      "image": "https://images.unsplash.com/photo-1582571352032-448f7928eca3?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 4,
+      "nom": "Canards de bain Lilliputiens",
+      "slug": "canards-bain",
+      "prix": 12,
+      "age_min": 0,
+      "age_max": 3,
+      "categorie": "Naissance & bébé",
+      "nouveaute": false,
+      "image": "https://images.unsplash.com/photo-1563901935883-cb61f6f01178?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 5,
+      "nom": "Poule en bois mécanique",
+      "slug": "poule-bois-mecanique",
+      "prix": 22,
+      "age_min": 2,
+      "age_max": 4,
+      "categorie": "Jouets en bois & éveil",
+      "nouveaute": true,
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 6,
+      "nom": "Homard en bois articulé",
+      "slug": "homard-bois-articule",
+      "prix": 28,
+      "age_min": 3,
+      "age_max": 6,
+      "categorie": "Jouets en bois & éveil",
+      "nouveaute": false,
+      "image": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 7,
+      "nom": "Poussin sonore",
+      "slug": "poussin-sonore",
+      "prix": 15,
+      "age_min": 0,
+      "age_max": 2,
+      "categorie": "Naissance & bébé",
+      "nouveaute": true,
+      "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 8,
+      "nom": "Puzzle ferme 36 pièces",
+      "slug": "puzzle-ferme",
+      "prix": 24,
+      "age_min": 3,
+      "age_max": 6,
+      "categorie": "Loisirs créatifs & puzzles",
+      "nouveaute": false,
+      "image": "https://images.unsplash.com/photo-1606503153255-59d8b8b82176?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 9,
+      "nom": "Jeu Hansel et Gretel",
+      "slug": "hansel-gretel",
+      "prix": 35,
+      "age_min": 4,
+      "age_max": 8,
+      "categorie": "Jeux de société & éducatifs",
+      "nouveaute": true,
+      "image": "https://images.unsplash.com/photo-1632501641765-e568d28b0015?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 10,
+      "nom": "Le loup et les sept chevreaux",
+      "slug": "loup-sept-chevreaux",
+      "prix": 29,
+      "age_min": 5,
+      "age_max": 10,
+      "categorie": "Jeux de société & éducatifs",
+      "nouveaute": false,
+      "image": "https://images.unsplash.com/photo-1632501641765-e568d28b0015?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 11,
+      "nom": "Kit collage de pompons",
+      "slug": "kit-collage-pompons",
+      "prix": 14,
+      "age_min": 4,
+      "age_max": 8,
+      "categorie": "Loisirs créatifs & puzzles",
+      "nouveaute": false,
+      "image": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 12,
+      "nom": "Marionnette loup en peluche",
+      "slug": "marionnette-loup",
+      "prix": 19,
+      "age_min": 3,
+      "age_max": 8,
+      "categorie": "Marionnettes & figurines",
+      "nouveaute": true,
+      "image": "https://images.unsplash.com/photo-1559715541-5daf8a0296d0?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 13,
+      "nom": "Dînette en bois 12 pièces",
+      "slug": "dinette-bois",
+      "prix": 38,
+      "age_min": 2,
+      "age_max": 6,
+      "categorie": "Jeux d'imitation & construction",
+      "nouveaute": false,
+      "image": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 14,
+      "nom": "Jeu des 7 familles nature",
+      "slug": "7-familles-nature",
+      "prix": 9,
+      "age_min": 6,
+      "age_max": 12,
+      "categorie": "Jeux de société & éducatifs",
+      "nouveaute": false,
+      "image": "https://images.unsplash.com/photo-1632501641765-e568d28b0015?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 15,
+      "nom": "Déguisement petit renard",
+      "slug": "deguisement-renard",
+      "prix": 42,
+      "age_min": 3,
+      "age_max": 8,
+      "categorie": "Déguisements & accessoires",
+      "nouveaute": true,
+      "image": "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 16,
+      "nom": "Xylophone en bois coloré",
+      "slug": "xylophone-bois",
+      "prix": 17,
+      "age_min": 1,
+      "age_max": 4,
+      "categorie": "Plein-air & musique",
+      "nouveaute": false,
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 17,
+      "nom": "Circuit de billes 52 pièces",
+      "slug": "circuit-billes",
+      "prix": 65,
+      "age_min": 4,
+      "age_max": 10,
+      "categorie": "Jeux d'imitation & construction",
+      "nouveaute": true,
+      "image": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 18,
+      "nom": "Livre animé La forêt des petits",
+      "slug": "livre-foret-petits",
+      "prix": 11,
+      "age_min": 0,
+      "age_max": 3,
+      "categorie": "Naissance & bébé",
+      "nouveaute": false,
+      "image": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 19,
+      "nom": "Jeu de construction magnétique",
+      "slug": "construction-magnetique",
+      "prix": 58,
+      "age_min": 5,
+      "age_max": 12,
+      "categorie": "Jeux d'imitation & construction",
+      "nouveaute": false,
+      "image": "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 20,
+      "nom": "Peluche renard des bois 30cm",
+      "slug": "peluche-renard",
+      "prix": 26,
+      "age_min": 0,
+      "age_max": 99,
+      "categorie": "Poupées & peluches",
+      "nouveaute": true,
+      "image": "https://images.unsplash.com/photo-1559715541-5daf8a0296d0?w=400&h=400&fit=crop"
+    }
+  ]
+}
