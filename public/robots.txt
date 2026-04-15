@@ -1,5 +1,9 @@
 User-agent: *
 Allow: /
+
+# Pages privées non indexées
+Disallow: /admin/
+Disallow: /api/
 Disallow: /connexion
 Disallow: /inscription
 Disallow: /mon-compte
@@ -7,4 +11,4 @@ Disallow: /panier
 Disallow: /commande
 Disallow: /confirmation
 
-Sitemap: https://caribounature-riom.fr/sitemap.xml
+Sitemap: https://caribou-nature.vercel.app/sitemap.xml

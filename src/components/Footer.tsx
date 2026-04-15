@@ -118,6 +118,7 @@ const Footer = () => (
             <li><a href="/connexion" className="hover:text-ocre transition-colors">Se connecter</a></li>
             <li><a href="/inscription" className="hover:text-ocre transition-colors">Créer un compte</a></li>
             <li><a href="/mon-compte" className="hover:text-ocre transition-colors">Mes commandes</a></li>
+            <li><a href="/suivi-commande" className="hover:text-ocre transition-colors">Suivi de commande</a></li>
             <li><a href="/wishlist" className="hover:text-ocre transition-colors">Ma wishlist</a></li>
           </ul>
         </div>

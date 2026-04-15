@@ -10,6 +10,7 @@ import {
   Menu,
   LogOut,
   Tag,
+  Megaphone,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth";
 import { useAdminNotifications } from "@/hooks/useAdminNotifications";
@@ -40,6 +41,7 @@ export default function AdminLayout({ children, title }: AdminLayoutProps) {
     { label: "Clients", to: "/admin/clients", icon: <Users size={18} /> },
     { label: "Newsletter", to: "/admin/newsletter", icon: <Mail size={18} /> },
     { label: "Codes promo", to: "/admin/codes-promo", icon: <Tag size={18} /> },
+    { label: "Bannière", to: "/admin/banniere", icon: <Megaphone size={18} /> },
     { label: "Paramètres", to: "/admin/parametres", icon: <Settings size={18} /> },
   ];
 

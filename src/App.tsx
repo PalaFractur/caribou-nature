@@ -34,6 +34,7 @@ const Cookies               = lazy(() => import("./pages/Cookies"));
 const NotFound              = lazy(() => import("./pages/NotFound"));
 const Quiz                  = lazy(() => import("./pages/Quiz"));
 const Comparer              = lazy(() => import("./pages/Comparer"));
+const SuiviCommande         = lazy(() => import("./pages/SuiviCommande"));
 
 // Admin pages (lazy-loaded)
 const AdminLogin       = lazy(() => import("./pages/admin/AdminLogin"));
@@ -44,6 +45,7 @@ const AdminClients     = lazy(() => import("./pages/admin/AdminClients"));
 const AdminNewsletter  = lazy(() => import("./pages/admin/AdminNewsletter"));
 const AdminParametres  = lazy(() => import("./pages/admin/AdminParametres"));
 const AdminPromoCodes  = lazy(() => import("./pages/admin/AdminPromoCodes"));
+const AdminBanniere    = lazy(() => import("./pages/admin/AdminBanniere"));
 
 const queryClient = new QueryClient();
 
@@ -81,6 +83,7 @@ const App = () => (
                   <Route path="/cookies"                     element={<Cookies />} />
                   <Route path="/quiz"                        element={<Quiz />} />
                   <Route path="/comparer"                    element={<Comparer />} />
+                  <Route path="/suivi-commande"              element={<SuiviCommande />} />
 
                   {/* Admin routes */}
                   <Route path="/admin/login"       element={<AdminLogin />} />
@@ -91,6 +94,7 @@ const App = () => (
                   <Route path="/admin/newsletter"  element={<AdminGuard><AdminNewsletter /></AdminGuard>} />
                   <Route path="/admin/parametres"  element={<AdminGuard><AdminParametres /></AdminGuard>} />
                   <Route path="/admin/codes-promo" element={<AdminGuard><AdminPromoCodes /></AdminGuard>} />
+                  <Route path="/admin/banniere"    element={<AdminGuard><AdminBanniere /></AdminGuard>} />
 
                   <Route path="*"                            element={<NotFound />} />
                 </Routes>

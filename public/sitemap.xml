@@ -3,151 +3,156 @@
 
   <!-- Pages principales -->
   <url>
-    <loc>https://caribounature-riom.fr/</loc>
+    <loc>https://caribou-nature.vercel.app/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/catalogue</loc>
+    <loc>https://caribou-nature.vercel.app/catalogue</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/idees-cadeaux</loc>
+    <loc>https://caribou-nature.vercel.app/idees-cadeaux</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/boutique</loc>
+    <loc>https://caribou-nature.vercel.app/boutique</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/contact</loc>
+    <loc>https://caribou-nature.vercel.app/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://caribou-nature.vercel.app/quiz</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Fiches produits -->
   <url>
-    <loc>https://caribounature-riom.fr/produit/tracteur-remorque-bois</loc>
+    <loc>https://caribou-nature.vercel.app/produit/tracteur-remorque-bois</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/oeuf-pour-oeuf</loc>
+    <loc>https://caribou-nature.vercel.app/produit/oeuf-pour-oeuf</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/microscope-nomade</loc>
+    <loc>https://caribou-nature.vercel.app/produit/microscope-nomade</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/canards-bain</loc>
+    <loc>https://caribou-nature.vercel.app/produit/canards-bain</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/poule-bois-mecanique</loc>
+    <loc>https://caribou-nature.vercel.app/produit/poule-bois-mecanique</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/homard-bois-articule</loc>
+    <loc>https://caribou-nature.vercel.app/produit/homard-bois-articule</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/poussin-sonore</loc>
+    <loc>https://caribou-nature.vercel.app/produit/poussin-sonore</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/puzzle-ferme</loc>
+    <loc>https://caribou-nature.vercel.app/produit/puzzle-ferme</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/hansel-gretel</loc>
+    <loc>https://caribou-nature.vercel.app/produit/hansel-gretel</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/loup-sept-chevreaux</loc>
+    <loc>https://caribou-nature.vercel.app/produit/loup-sept-chevreaux</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/kit-collage-pompons</loc>
+    <loc>https://caribou-nature.vercel.app/produit/kit-collage-pompons</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/marionnette-loup</loc>
+    <loc>https://caribou-nature.vercel.app/produit/marionnette-loup</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/dinette-bois</loc>
+    <loc>https://caribou-nature.vercel.app/produit/dinette-bois</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/7-familles-nature</loc>
+    <loc>https://caribou-nature.vercel.app/produit/7-familles-nature</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/deguisement-renard</loc>
+    <loc>https://caribou-nature.vercel.app/produit/deguisement-renard</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/xylophone-bois</loc>
+    <loc>https://caribou-nature.vercel.app/produit/xylophone-bois</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/circuit-billes</loc>
+    <loc>https://caribou-nature.vercel.app/produit/circuit-billes</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/livre-foret-petits</loc>
+    <loc>https://caribou-nature.vercel.app/produit/livre-foret-petits</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/construction-magnetique</loc>
+    <loc>https://caribou-nature.vercel.app/produit/construction-magnetique</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/produit/peluche-renard</loc>
+    <loc>https://caribou-nature.vercel.app/produit/peluche-renard</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Pages légales -->
   <url>
-    <loc>https://caribounature-riom.fr/cgv</loc>
+    <loc>https://caribou-nature.vercel.app/cgv</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/mentions-legales</loc>
+    <loc>https://caribou-nature.vercel.app/mentions-legales</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/politique-de-confidentialite</loc>
+    <loc>https://caribou-nature.vercel.app/politique-de-confidentialite</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://caribounature-riom.fr/cookies</loc>
+    <loc>https://caribou-nature.vercel.app/cookies</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
