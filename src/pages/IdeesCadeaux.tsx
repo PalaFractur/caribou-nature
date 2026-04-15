@@ -1,11 +1,13 @@
 import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumb from "@/components/Breadcrumb";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { ChevronRight } from "lucide-react";
+import { useMeta } from "@/hooks/useMeta";
 
 const ageGroups = [
   {
@@ -68,6 +70,7 @@ const occasions = [
 ];
 
 const IdeesCadeaux = () => {
+  useMeta({ title: "Idées cadeaux — Jouets par âge et occasion", description: "Trouvez le cadeau idéal pour chaque enfant. Sélectionnez l'âge et l'occasion pour découvrir nos coups de cœur." });
   const [selectedAge, setSelectedAge] = useState<{ min: number; max: number } | null>(null);
 
   const filteredProducts = selectedAge
@@ -79,9 +82,12 @@ const IdeesCadeaux = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background page-transition">
       <TopBar />
       <Header />
+      <div className="container py-3">
+        <Breadcrumb crumbs={[{ label: "Accueil", href: "/" }, { label: "Idées cadeaux" }]} />
+      </div>
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-sable to-creme py-16 md:py-20 text-center">

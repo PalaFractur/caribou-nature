@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { connecter } from "@/lib/auth";
+import { useAuth } from "@/lib/auth";
 import { Eye, EyeOff } from "lucide-react";
 
 export default function Connexion() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { signIn } = useAuth();
+  const from = (location.state as { from?: string })?.from || "/mon-compte";
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -25,11 +28,10 @@ export default function Connexion() {
     e.preventDefault();
     if (!form.email || !form.password) { setError("Veuillez remplir tous les champs."); return; }
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 600));
-    const result = connecter(form.email, form.password);
+    const result = await signIn(form.email, form.password);
     setLoading(false);
     if (!result.success) { setError(result.error || "Erreur de connexion."); return; }
-    navigate("/mon-compte");
+    navigate(from);
   };
 
   return (

@@ -5,11 +5,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { inscrire } from "@/lib/auth";
+import { useAuth } from "@/lib/auth";
 import { CheckCircle, Eye, EyeOff } from "lucide-react";
 
 export default function Inscription() {
   const navigate = useNavigate();
+  const { signUp } = useAuth();
   const [form, setForm] = useState({ prenom: "", nom: "", email: "", password: "", confirm: "" });
   const [errors, setErrors] = useState<Partial<typeof form & { global: string }>>({});
   const [showPassword, setShowPassword] = useState(false);
@@ -37,8 +38,7 @@ export default function Inscription() {
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 600));
-    const result = inscrire(form.prenom, form.nom, form.email, form.password);
+    const result = await signUp(form.prenom, form.nom, form.email, form.password);
     setLoading(false);
     if (!result.success) { setErrors({ global: result.error }); return; }
     setSuccess(true);

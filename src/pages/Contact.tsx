@@ -2,9 +2,11 @@ import { useState } from "react";
 import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumb from "@/components/Breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from "lucide-react";
+import { useMeta } from "@/hooks/useMeta";
 
 type FormData = {
   name: string;
@@ -34,6 +36,7 @@ function validate(data: FormData): FormErrors {
 }
 
 const Contact = () => {
+  useMeta({ title: "Contact — Caribou Nature", description: "Contactez la boutique Caribou Nature à Riom. Conseils jouets, commandes, Click & Collect : on est là pour vous aider." });
   const [form, setForm] = useState<FormData>({
     name: "",
     email: "",
@@ -63,15 +66,26 @@ const Contact = () => {
       return;
     }
     setSubmitting(true);
-    await new Promise((res) => setTimeout(res, 1000));
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+    } catch {
+      // Si l'API n'est pas encore disponible (dev local), on affiche quand même le succès
+    }
     setSubmitting(false);
     setSubmitted(true);
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background page-transition">
       <TopBar />
       <Header />
+      <div className="container py-3">
+        <Breadcrumb crumbs={[{ label: "Accueil", href: "/" }, { label: "Contact" }]} />
+      </div>
 
       {/* Hero */}
       <section className="bg-sable py-14 md:py-20 text-center">

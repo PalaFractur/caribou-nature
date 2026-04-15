@@ -2,12 +2,50 @@ import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
+import JsonLd from "@/components/JsonLd";
 import { products } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-caribou.jpg";
 import boutiqueImage from "@/assets/boutique-caribou.jpg";
 import { ChevronRight, Star } from "lucide-react";
 import { useState } from "react";
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "ToyStore",
+  name: "Caribou Nature",
+  description: "Boutique de jouets en bois, jeux éducatifs et jeux de société à Riom, Puy-de-Dôme.",
+  url: "https://caribounature-riom.fr",
+  telephone: "+33473648055",
+  email: "caribounature@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "12 rue Saint-Amable",
+    addressLocality: "Riom",
+    postalCode: "63200",
+    addressCountry: "FR",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 45.8942,
+    longitude: 3.1131,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "09:30",
+      closes: "19:00",
+    },
+  ],
+  sameAs: [
+    "https://www.facebook.com/Caribounature/",
+    "https://www.instagram.com/caribou.nature/",
+  ],
+  priceRange: "€€",
+  currenciesAccepted: "EUR",
+  paymentAccepted: "Cash, Credit Card",
+};
 
 const ageGroups = [
   { emoji: "🍼", label: "0 – 1 an", bg: "bg-ocre/15", query: "0-1" },
@@ -34,6 +72,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <JsonLd id="local-business" data={localBusinessSchema} />
       <TopBar />
       <Header />
 

@@ -1,8 +1,10 @@
-import { useState, useMemo } from "react";
+import { useMemo, useState, useEffect, useRef, useCallback } from "react";
 import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
+import Breadcrumb from "@/components/Breadcrumb";
+import SkeletonCard from "@/components/SkeletonCard";
 import { products } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,6 +13,7 @@ import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
+import { useMeta } from "@/hooks/useMeta";
 
 const categories = [
   "Jouets en bois & éveil",
@@ -34,54 +37,130 @@ const ageRanges = [
 
 type SortOption = "pertinence" | "prix-asc" | "prix-desc" | "nouveautes";
 
-const Catalogue = () => {
-  const [searchParams] = useSearchParams();
-  const ageQuery = searchParams.get("age");
+// ─── helpers ─────────────────────────────────────────────────────────────────
 
-  // Filters state
-  const [search, setSearch] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedAges, setSelectedAges] = useState<string[]>(ageQuery ? [ageQuery] : []);
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 150]);
-  const [newOnly, setNewOnly] = useState(false);
-  const [sort, setSort] = useState<SortOption>("pertinence");
+function parseList(value: string | null): string[] {
+  if (!value) return [];
+  return value.split(",").map((s) => s.trim()).filter(Boolean);
+}
+
+function buildParams(
+  base: URLSearchParams,
+  patch: Record<string, string | null>
+): URLSearchParams {
+  const next = new URLSearchParams(base);
+  for (const [key, val] of Object.entries(patch)) {
+    if (val === null || val === "") {
+      next.delete(key);
+    } else {
+      next.set(key, val);
+    }
+  }
+  return next;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
+const Catalogue = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // ── read filters from URL ─────────────────────────────────────────────────
+  const search = searchParams.get("q") ?? "";
+  const selectedCategories = parseList(searchParams.get("cat"));
+  const selectedAges = parseList(searchParams.get("age"));
+  const priceMin = Number(searchParams.get("min") ?? 0);
+  const priceMax = Number(searchParams.get("max") ?? 150);
+  const priceRange: [number, number] = [priceMin, priceMax];
+  const newOnly = searchParams.get("new") === "1";
+  const sort = (searchParams.get("sort") as SortOption) ?? "pertinence";
+
+  // ── local UI state ────────────────────────────────────────────────────────
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [visibleCount, setVisibleCount] = useState(12);
+  const [loading, setLoading] = useState(true);
+  const firstRender = useRef(true);
 
-  const toggleCategory = (cat: string) =>
-    setSelectedCategories((prev) =>
-      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
-    );
+  useMeta({
+    title: "Catalogue — Jouets en bois et jeux éducatifs",
+    description: "Plus de 1 000 références de jouets en bois, jeux éducatifs et jeux de société. Filtrez par âge, catégorie et budget.",
+    url: "/catalogue",
+  });
 
-  const toggleAge = (label: string) =>
-    setSelectedAges((prev) =>
-      prev.includes(label) ? prev.filter((a) => a !== label) : [...prev, label]
-    );
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      setLoading(false);
+    }
+  }, []);
 
-  const resetFilters = () => {
-    setSearch("");
-    setSelectedCategories([]);
-    setSelectedAges([]);
-    setPriceRange([0, 150]);
-    setNewOnly(false);
-    setSort("pertinence");
-  };
+  // Reset visible count when filters change
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [searchParams.toString()]);
+
+  // ── setters that update URL ───────────────────────────────────────────────
+
+  const setSearch = useCallback((val: string) => {
+    setSearchParams((prev) => buildParams(prev, { q: val || null }), { replace: true });
+  }, [setSearchParams]);
+
+  const toggleCategory = useCallback((cat: string) => {
+    setSearchParams((prev) => {
+      const current = parseList(prev.get("cat"));
+      const next = current.includes(cat)
+        ? current.filter((c) => c !== cat)
+        : [...current, cat];
+      return buildParams(prev, { cat: next.join(",") || null });
+    }, { replace: true });
+  }, [setSearchParams]);
+
+  const toggleAge = useCallback((label: string) => {
+    setSearchParams((prev) => {
+      const current = parseList(prev.get("age"));
+      const next = current.includes(label)
+        ? current.filter((a) => a !== label)
+        : [...current, label];
+      return buildParams(prev, { age: next.join(",") || null });
+    }, { replace: true });
+  }, [setSearchParams]);
+
+  const setPriceRange = useCallback((val: [number, number]) => {
+    setSearchParams((prev) => buildParams(prev, {
+      min: val[0] === 0 ? null : String(val[0]),
+      max: val[1] === 150 ? null : String(val[1]),
+    }), { replace: true });
+  }, [setSearchParams]);
+
+  const setNewOnly = useCallback((val: boolean) => {
+    setSearchParams((prev) => buildParams(prev, { new: val ? "1" : null }), { replace: true });
+  }, [setSearchParams]);
+
+  const setSort = useCallback((val: SortOption) => {
+    setSearchParams((prev) => buildParams(prev, { sort: val === "pertinence" ? null : val }), { replace: true });
+  }, [setSearchParams]);
+
+  const resetFilters = useCallback(() => {
+    setSearchParams(new URLSearchParams(), { replace: true });
+  }, [setSearchParams]);
+
+  const hasActiveFilters =
+    search || selectedCategories.length > 0 || selectedAges.length > 0 ||
+    priceMin > 0 || priceMax < 150 || newOnly || sort !== "pertinence";
+
+  // ── filtering & sorting ───────────────────────────────────────────────────
 
   const filtered = useMemo(() => {
     let result = [...products];
 
-    // Search
     if (search.trim()) {
       const q = search.toLowerCase();
       result = result.filter((p) => p.name.toLowerCase().includes(q));
     }
 
-    // Categories
     if (selectedCategories.length > 0) {
       result = result.filter((p) => selectedCategories.includes(p.category));
     }
 
-    // Age ranges
     if (selectedAges.length > 0) {
       result = result.filter((p) =>
         selectedAges.some((label) => {
@@ -92,13 +171,10 @@ const Catalogue = () => {
       );
     }
 
-    // Price
     result = result.filter((p) => p.price >= priceRange[0] && p.price <= priceRange[1]);
 
-    // New only
     if (newOnly) result = result.filter((p) => p.isNew);
 
-    // Sort
     switch (sort) {
       case "prix-asc":
         result.sort((a, b) => a.price - b.price);
@@ -115,6 +191,8 @@ const Catalogue = () => {
   }, [search, selectedCategories, selectedAges, priceRange, newOnly, sort]);
 
   const visibleProducts = filtered.slice(0, visibleCount);
+
+  // ── filter panel (reused for desktop & mobile) ────────────────────────────
 
   const FilterPanel = () => (
     <div className="space-y-6">
@@ -174,16 +252,20 @@ const Catalogue = () => {
       </div>
 
       {/* Reset */}
-      <Button variant="outline" className="w-full" onClick={resetFilters}>
+      <Button variant="outline" className="w-full" onClick={resetFilters} disabled={!hasActiveFilters}>
         Réinitialiser les filtres
       </Button>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-creme">
+    <div className="min-h-screen bg-creme page-transition">
       <TopBar />
       <Header />
+
+      <div className="container py-3">
+        <Breadcrumb crumbs={[{ label: "Accueil", href: "/" }, { label: "Catalogue" }]} />
+      </div>
 
       {/* Hero */}
       <section className="bg-sable py-10 md:py-14">
@@ -200,6 +282,15 @@ const Catalogue = () => {
               onChange={(e) => setSearch(e.target.value)}
               className="pl-10 bg-blanc-casse border-sable h-12 text-base rounded-btn"
             />
+            {search && (
+              <button
+                onClick={() => setSearch("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gris-chaud hover:text-brun transition-colors"
+                aria-label="Effacer la recherche"
+              >
+                <X size={16} />
+              </button>
+            )}
           </div>
         </div>
       </section>
@@ -215,9 +306,19 @@ const Catalogue = () => {
           <div className="flex-1 min-w-0">
             {/* Toolbar */}
             <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-              <p className="font-body text-sm text-gris-chaud">
-                <span className="font-semibold text-brun">{filtered.length}</span> produit{filtered.length > 1 ? "s" : ""} trouvé{filtered.length > 1 ? "s" : ""}
-              </p>
+              <div className="flex items-center gap-2 flex-wrap">
+                <p className="font-body text-sm text-gris-chaud">
+                  <span className="font-semibold text-brun">{filtered.length}</span> produit{filtered.length > 1 ? "s" : ""} trouvé{filtered.length > 1 ? "s" : ""}
+                </p>
+                {hasActiveFilters && (
+                  <button
+                    onClick={resetFilters}
+                    className="flex items-center gap-1 font-body text-xs text-terracotta hover:underline"
+                  >
+                    <X size={12} /> Effacer les filtres
+                  </button>
+                )}
+              </div>
 
               <div className="flex items-center gap-3">
                 {/* Mobile filter btn */}
@@ -228,6 +329,16 @@ const Catalogue = () => {
                   onClick={() => setShowMobileFilters(true)}
                 >
                   <SlidersHorizontal size={16} /> Filtres
+                  {hasActiveFilters && (
+                    <span className="ml-1 bg-ocre text-white rounded-full text-xs w-4 h-4 flex items-center justify-center shrink-0">
+                      {[
+                        selectedCategories.length,
+                        selectedAges.length,
+                        newOnly ? 1 : 0,
+                        priceMin > 0 || priceMax < 150 ? 1 : 0,
+                      ].reduce((a, b) => a + b, 0)}
+                    </span>
+                  )}
                 </Button>
 
                 <select
@@ -243,8 +354,36 @@ const Catalogue = () => {
               </div>
             </div>
 
+            {/* Active filter chips */}
+            {(selectedCategories.length > 0 || selectedAges.length > 0) && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {selectedCategories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => toggleCategory(cat)}
+                    className="flex items-center gap-1 bg-ocre/10 border border-ocre/30 text-ocre text-xs font-body font-semibold px-2.5 py-1 rounded-full hover:bg-ocre/20 transition-colors"
+                  >
+                    {cat} <X size={11} />
+                  </button>
+                ))}
+                {selectedAges.map((age) => (
+                  <button
+                    key={age}
+                    onClick={() => toggleAge(age)}
+                    className="flex items-center gap-1 bg-vert-sauge/10 border border-vert-sauge/30 text-vert-sauge text-xs font-body font-semibold px-2.5 py-1 rounded-full hover:bg-vert-sauge/20 transition-colors"
+                  >
+                    {age} <X size={11} />
+                  </button>
+                ))}
+              </div>
+            )}
+
             {/* Grid */}
-            {visibleProducts.length > 0 ? (
+            {loading ? (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                {Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)}
+              </div>
+            ) : visibleProducts.length > 0 ? (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                 {visibleProducts.map((p) => (
                   <ProductCard key={p.id} product={p} />
@@ -262,7 +401,7 @@ const Catalogue = () => {
             {visibleCount < filtered.length && (
               <div className="text-center mt-8">
                 <Button variant="outline" onClick={() => setVisibleCount((c) => c + 12)}>
-                  Voir plus de produits
+                  Voir plus de produits ({filtered.length - visibleCount} restants)
                 </Button>
               </div>
             )}

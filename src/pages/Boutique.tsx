@@ -1,9 +1,11 @@
 import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumb from "@/components/Breadcrumb";
 import boutiqueImage from "@/assets/boutique-caribou.jpg";
 import { ChevronRight, Leaf, BookOpen, Heart, Award, MapPin, Clock, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useMeta } from "@/hooks/useMeta";
 
 const timeline = [
   { year: "2003", title: "Ouverture de la boutique", desc: "Denis Bertrand ouvre Caribou Nature au cœur de Riom avec une idée simple : proposer des jouets qui ont du sens." },
@@ -49,10 +51,15 @@ const values = [
   },
 ];
 
-const Boutique = () => (
-  <div className="min-h-screen bg-background">
+const Boutique = () => {
+  useMeta({ title: "Notre boutique — Caribou Nature à Riom", description: "Découvrez l'histoire de Caribou Nature, boutique indépendante de jouets en bois et jeux éducatifs à Riom depuis 2003." });
+  return (
+  <div className="min-h-screen bg-background page-transition">
     <TopBar />
     <Header />
+    <div className="container py-3">
+      <Breadcrumb crumbs={[{ label: "Accueil", href: "/" }, { label: "Notre boutique" }]} />
+    </div>
 
     {/* Hero */}
     <section className="relative h-64 md:h-80 overflow-hidden">
@@ -230,6 +237,7 @@ const Boutique = () => (
 
     <Footer />
   </div>
-);
+  );
+};
 
 export default Boutique;
